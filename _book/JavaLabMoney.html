@@ -1,0 +1,426 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Java Lab Money · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism-okaidia.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-lightbox/lightbox.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-codeblock-label/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="JavaLabMoney.html">
+            
+                <a href="JavaLabMoney.html">
+            
+                    
+                    Java Lab Money
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Java Lab Money</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <html><head></head><body><h1 id="java-lab-money">Java Lab Money</h1>
+<h2 id="chapter-6-lab">Chapter 6 Lab</h2>
+<p><iframe src="assets/lab6.pdf" style="width: 100%; height: 600px; border: 0px none;"></iframe></p>
+<h2 id="programming">Programming</h2>
+<p></p><p class="code-label">Money.java</p><p></p>
+<pre class="language-"><code class="lang-Java">package JavaLabMoney;
+
+// Objects represent nonnegative amounts of money
+public class Money {
+    private long dollars;    //A number of dollars
+    private long cents;        //A number of cents
+
+    //Constructor creates a Money object using the amount of money in
+    //dollars and cents represented with a decimal number
+    public Money(double amount) {
+        if (amount &lt; 0) {
+            System.out.println(
+                    &quot;Error: Negative amounts of money are not allowed.&quot;);
+            System.exit(0);
+        } else {
+            long allCents = Math.round(amount * 100);
+            dollars = allCents / 100;
+            cents = allCents % 100;
+        }
+    }
+
+//  Overload the constructor.
+//  The constructor that I would be writing is a copy constructor.
+//  It should use the parameter money
+//  object to make a duplicate money object,
+//  by copying the value of each instance
+//  variable from the parameter object to the instance
+//  variable of the new object.
+    public Money(Money otherObject) {
+        this.dollars = otherObject.dollars;
+        this.cents = otherObject.cents;
+
+    }
+
+
+    // Adds the calling Money object to the parameter Money object.
+    public Money add(Money otherAmount) {
+        Money sum = new Money(0);
+        sum.cents = this.cents + otherAmount.cents;
+        long carryDollars = sum.cents / 100;
+        sum.cents = sum.cents % 100;
+        sum.dollars = this.dollars
+                + otherAmount.dollars + carryDollars;
+        return sum;
+    }
+
+    // Subtracts the parameter Money object from the calling Money
+    // object and returns the difference.
+    public Money subtract(Money amount) {
+        Money difference = new Money(0);
+        if (this.cents &lt; amount.cents) {
+            this.dollars = this.dollars - 1;
+            this.cents = this.cents + 100;
+        }
+        difference.dollars = this.dollars - amount.dollars;
+        difference.cents = this.cents - amount.cents;
+        return difference;
+    }
+
+    //Compares instance variable of the calling object
+    //with the parameter object.  It returns -1 if the
+    //dollars and the cents of the calling object are
+    //less than the dollars and the cents of the parameter
+    //object, 0 if the dollars and the cents of the calling
+    //object are equal to the dollars and cents of the
+    //parameter object, and 1 if the dollars and the cents
+    //of the calling object are more than the dollars and
+    //the cents of the parameter object.
+    public int compareTo(Money amount) {
+        int value;
+        if (this.dollars &lt; amount.dollars) {
+            value = -1;
+        } else if (this.dollars &gt; amount.dollars) {
+            value = 1;
+        } else if (this.cents &lt; amount.cents) {
+            value = -1;
+        } else if (this.cents &gt; amount.cents) {
+            value = 1;
+        } else {
+            value = 0;
+        }
+        return value;
+    }
+
+//  Write and document an equals method.
+//  The method compares the instance
+//  variables of the calling object with instance
+//  variables of the parameter object for
+//  equality and returns true if the dollars and the cents of the calling
+//  object are the same as the dollars and the cents of the parameter object.
+//  Otherwise, it returns false.
+    public boolean equals(Money otherObject) {
+        if ((this.dollars == otherObject.dollars) &amp;&amp;
+                (this.cents == otherObject.cents)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+//  Write and document a toString method.
+//  This method will return a String that looks like money,
+//  including the dollar sign.
+//  Remember that if you have less than 10 cents,
+//  you will need to put a 0 before printing the cents so
+//  that it appears correctly with 2 decimal places.
+    public String toString() {
+        if (this.cents &lt; 10) {
+            return &quot;$&quot; + this.dollars + &quot;.0&quot; + this.cents;
+
+        } else {
+            return &quot;$&quot; + this.dollars + &quot;.&quot; + this.cents;
+        }
+
+
+    }
+
+
+}
+</code></pre>
+</body></html>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Java Lab Money","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","prism","-highlight","back-to-top-button","page-toc-button","-lunr","-search","search-plus","copy-code-button","alerts","lightbox","katex","mathjax-full","url-embed","embed-pdf","codeblock-label"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"mathjax-full":{},"codeblock-label":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"lightbox":{"jquery":true},"page-toc-button":{},"back-to-top-button":{},"alerts":{},"copy-code-button":{},"url-embed":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"embed-pdf":{},"expandable-chapters":{},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaLabMoney.md","mtime":"2019-10-14T18:52:53.534Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-14T18:55:20.066Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lightbox/jquery.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lightbox/lightbox.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-mathjax-full/config.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-mathjax-full/mathjax.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
