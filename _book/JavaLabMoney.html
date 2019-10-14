@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Java Lab Money · GitBook</title>
+        <title>JavaLabMoney · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -137,7 +137,7 @@
                 <a href="JavaLabMoney.html">
             
                     
-                    Java Lab Money
+                    JavaLabMoney
             
                 </a>
             
@@ -175,7 +175,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Java Lab Money</a>
+        <a href="." >JavaLabMoney</a>
     </h1>
 </div>
 
@@ -192,129 +192,351 @@
                                 
                                 <html><head></head><body><h1 id="java-lab-money">Java Lab Money</h1>
 <h2 id="chapter-6-lab">Chapter 6 Lab</h2>
-<p><iframe src="assets/lab6.pdf" style="width: 100%; height: 600px; border: 0px none;"></iframe></p>
+<p><iframe src="assets/Lab6.pdf" style="width: 100%; height: 600px; border: 0px none;"></iframe></p>
 <h2 id="programming">Programming</h2>
 <p></p><p class="code-label">Money.java</p><p></p>
-<pre class="language-"><code class="lang-Java">package JavaLabMoney;
+<pre class="language-"><code class="lang-java"><span class="token keyword">package</span> <span class="token class-name">JavaLabMoney</span><span class="token punctuation">;</span>
 
-// Objects represent nonnegative amounts of money
-public class Money {
-    private long dollars;    //A number of dollars
-    private long cents;        //A number of cents
+<span class="token comment">// Objects represent nonnegative amounts of money</span>
 
-    //Constructor creates a Money object using the amount of money in
-    //dollars and cents represented with a decimal number
-    public Money(double amount) {
-        if (amount &lt; 0) {
-            System.out.println(
-                    &quot;Error: Negative amounts of money are not allowed.&quot;);
-            System.exit(0);
-        } else {
-            long allCents = Math.round(amount * 100);
-            dollars = allCents / 100;
-            cents = allCents % 100;
-        }
-    }
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Money</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> dollars<span class="token punctuation">;</span>    <span class="token comment">//A number of dollars</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> cents<span class="token punctuation">;</span>        <span class="token comment">//A number of cents</span>
 
-//  Overload the constructor.
-//  The constructor that I would be writing is a copy constructor.
-//  It should use the parameter money
-//  object to make a duplicate money object,
-//  by copying the value of each instance
-//  variable from the parameter object to the instance
-//  variable of the new object.
-    public Money(Money otherObject) {
-        this.dollars = otherObject.dollars;
-        this.cents = otherObject.cents;
+    <span class="token comment">//Constructor creates a Money object using the amount of money in</span>
+    <span class="token comment">//dollars and cents represented with a decimal number</span>
 
-    }
+    <span class="token keyword">public</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token keyword">double</span> amount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>amount <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>
+                    <span class="token string">&quot;Error: Negative amounts of money are not allowed.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">long</span> allCents <span class="token operator">=</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>amount <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            dollars <span class="token operator">=</span> allCents <span class="token operator">/</span> <span class="token number">100</span><span class="token punctuation">;</span>
+            cents <span class="token operator">=</span> allCents <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
+<span class="token comment">//  Overload the constructor.</span>
+<span class="token comment">//  The constructor that I would be writing is a copy constructor.</span>
+<span class="token comment">//  It should use the parameter money</span>
+<span class="token comment">//  object to make a duplicate money object,</span>
+<span class="token comment">//  by copying the value of each instance</span>
+<span class="token comment">//  variable from the parameter object to the instance</span>
+<span class="token comment">//  variable of the new object.</span>
 
-    // Adds the calling Money object to the parameter Money object.
-    public Money add(Money otherAmount) {
-        Money sum = new Money(0);
-        sum.cents = this.cents + otherAmount.cents;
-        long carryDollars = sum.cents / 100;
-        sum.cents = sum.cents % 100;
-        sum.dollars = this.dollars
-                + otherAmount.dollars + carryDollars;
-        return sum;
-    }
+    <span class="token keyword">public</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token class-name">Money</span> otherObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">=</span> otherObject<span class="token punctuation">.</span>dollars<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">=</span> otherObject<span class="token punctuation">.</span>cents<span class="token punctuation">;</span>
 
-    // Subtracts the parameter Money object from the calling Money
-    // object and returns the difference.
-    public Money subtract(Money amount) {
-        Money difference = new Money(0);
-        if (this.cents &lt; amount.cents) {
-            this.dollars = this.dollars - 1;
-            this.cents = this.cents + 100;
-        }
-        difference.dollars = this.dollars - amount.dollars;
-        difference.cents = this.cents - amount.cents;
-        return difference;
-    }
-
-    //Compares instance variable of the calling object
-    //with the parameter object.  It returns -1 if the
-    //dollars and the cents of the calling object are
-    //less than the dollars and the cents of the parameter
-    //object, 0 if the dollars and the cents of the calling
-    //object are equal to the dollars and cents of the
-    //parameter object, and 1 if the dollars and the cents
-    //of the calling object are more than the dollars and
-    //the cents of the parameter object.
-    public int compareTo(Money amount) {
-        int value;
-        if (this.dollars &lt; amount.dollars) {
-            value = -1;
-        } else if (this.dollars &gt; amount.dollars) {
-            value = 1;
-        } else if (this.cents &lt; amount.cents) {
-            value = -1;
-        } else if (this.cents &gt; amount.cents) {
-            value = 1;
-        } else {
-            value = 0;
-        }
-        return value;
-    }
-
-//  Write and document an equals method.
-//  The method compares the instance
-//  variables of the calling object with instance
-//  variables of the parameter object for
-//  equality and returns true if the dollars and the cents of the calling
-//  object are the same as the dollars and the cents of the parameter object.
-//  Otherwise, it returns false.
-    public boolean equals(Money otherObject) {
-        if ((this.dollars == otherObject.dollars) &amp;&amp;
-                (this.cents == otherObject.cents)) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
-//  Write and document a toString method.
-//  This method will return a String that looks like money,
-//  including the dollar sign.
-//  Remember that if you have less than 10 cents,
-//  you will need to put a 0 before printing the cents so
-//  that it appears correctly with 2 decimal places.
-    public String toString() {
-        if (this.cents &lt; 10) {
-            return &quot;$&quot; + this.dollars + &quot;.0&quot; + this.cents;
-
-        } else {
-            return &quot;$&quot; + this.dollars + &quot;.&quot; + this.cents;
-        }
+    <span class="token punctuation">}</span>
 
 
-    }
+    <span class="token comment">// Adds the calling Money object to the parameter Money object.</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Money</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">Money</span> otherAmount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Money</span> sum <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sum<span class="token punctuation">.</span>cents <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">+</span> otherAmount<span class="token punctuation">.</span>cents<span class="token punctuation">;</span>
+        <span class="token keyword">long</span> carryDollars <span class="token operator">=</span> sum<span class="token punctuation">.</span>cents <span class="token operator">/</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        sum<span class="token punctuation">.</span>cents <span class="token operator">=</span> sum<span class="token punctuation">.</span>cents <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        sum<span class="token punctuation">.</span>dollars <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dollars
+                <span class="token operator">+</span> otherAmount<span class="token punctuation">.</span>dollars <span class="token operator">+</span> carryDollars<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Subtracts the parameter Money object from the calling Money</span>
+    <span class="token comment">// object and returns the difference.</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Money</span> <span class="token function">subtract</span><span class="token punctuation">(</span><span class="token class-name">Money</span> amount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Money</span> difference <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">&lt;</span> amount<span class="token punctuation">.</span>cents<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        difference<span class="token punctuation">.</span>dollars <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">-</span> amount<span class="token punctuation">.</span>dollars<span class="token punctuation">;</span>
+        difference<span class="token punctuation">.</span>cents <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">-</span> amount<span class="token punctuation">.</span>cents<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> difference<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//Compares instance variable of the calling object</span>
+    <span class="token comment">//with the parameter object.  It returns -1 if the</span>
+    <span class="token comment">//dollars and the cents of the calling object are</span>
+    <span class="token comment">//less than the dollars and the cents of the parameter</span>
+    <span class="token comment">//object, 0 if the dollars and the cents of the calling</span>
+    <span class="token comment">//object are equal to the dollars and cents of the</span>
+    <span class="token comment">//parameter object, and 1 if the dollars and the cents</span>
+    <span class="token comment">//of the calling object are more than the dollars and</span>
+    <span class="token comment">//the cents of the parameter object.</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compareTo</span><span class="token punctuation">(</span><span class="token class-name">Money</span> amount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> value<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">&lt;</span> amount<span class="token punctuation">.</span>dollars<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">&gt;</span> amount<span class="token punctuation">.</span>dollars<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">&lt;</span> amount<span class="token punctuation">.</span>cents<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">&gt;</span> amount<span class="token punctuation">.</span>cents<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            value <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            value <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token comment">//  Write and document an equals method.</span>
+<span class="token comment">//  The method compares the instance</span>
+<span class="token comment">//  variables of the calling object with instance</span>
+<span class="token comment">//  variables of the parameter object for</span>
+<span class="token comment">//  equality and returns true if the dollars and the cents of the calling</span>
+<span class="token comment">//  object are the same as the dollars and the cents of the parameter object.</span>
+<span class="token comment">//  Otherwise, it returns false.</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Money</span> otherObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">==</span> otherObject<span class="token punctuation">.</span>dollars<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+                <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">==</span> otherObject<span class="token punctuation">.</span>cents<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token comment">//  Write and document a toString method.</span>
+<span class="token comment">//  This method will return a String that looks like money,</span>
+<span class="token comment">//  including the dollar sign.</span>
+<span class="token comment">//  Remember that if you have less than 10 cents,</span>
+<span class="token comment">//  you will need to put a 0 before printing the cents so</span>
+<span class="token comment">//  that it appears correctly with 2 decimal places.</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>cents <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">&quot;$&quot;</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">+</span> <span class="token string">&quot;.0&quot;</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cents<span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">&quot;$&quot;</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dollars <span class="token operator">+</span> <span class="token string">&quot;.&quot;</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cents<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
 
-}
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p></p><p class="code-label">CreditCard.java</p><p></p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">package</span> <span class="token class-name">JavaLabMoney</span><span class="token punctuation">;</span>
+
+<span class="token comment">// I will create my CreditCard file.</span>
+<span class="token comment">// It should have data fields that include an owner of type Person,</span>
+<span class="token comment">// a balance of type Money, and a creditLimit of type Money.</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CreditCard</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">Money</span> balance<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Money</span> creditLimit<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Person</span> owner<span class="token punctuation">;</span>
+
+<span class="token comment">//  It should have a constructor that has two parameter</span>
+    <span class="token keyword">public</span> <span class="token class-name">CreditCard</span><span class="token punctuation">(</span><span class="token class-name">Person</span> owner<span class="token punctuation">,</span> <span class="token class-name">Money</span> creditLimit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>creditLimit <span class="token operator">=</span> creditLimit<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>owner <span class="token operator">=</span> owner<span class="token punctuation">;</span>
+<span class="token comment">//      The balance can be initialized to a Money value of zero</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>balance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token punctuation">}</span>
+
+<span class="token comment">//  It should have accessor methods to get the balance and the available credit.</span>
+<span class="token comment">//  Since these are objects (pass by reference), we don&#x2019;t want to create an insecure</span>
+<span class="token comment">//  credit card by passing out addresses to components in our credit card,</span>
+<span class="token comment">//  so we must return a new object with the same values.</span>
+    <span class="token keyword">public</span> <span class="token class-name">Money</span> <span class="token function">getBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span>balance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Money</span> <span class="token function">getCreditLimit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span>creditLimit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token comment">//  It should have an accessor method to get the</span>
+<span class="token comment">//  information about the owner, but in the form of a String that can be printed out.</span>
+<span class="token comment">//  This can be done by calling the toString method for the owner.</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getPersonals</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> owner<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token comment">//  It should have a method that will charge to the credit card by adding</span>
+<span class="token comment">//  the amount of Money in the parameter to the balance if it will not exceed the credit limit.</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">charge</span><span class="token punctuation">(</span><span class="token class-name">Money</span> amount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>balance<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>amount<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>creditLimit<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Charge: &quot;</span> <span class="token operator">+</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            balance <span class="token operator">=</span> balance<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+
+    <span class="token punctuation">}</span>
+
+<span class="token comment">//  It should have a method that will make</span>
+<span class="token comment">//  a payment on the credit card by subtracting</span>
+<span class="token comment">//  the amount of Money in the parameter from the balance.</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">payment</span><span class="token punctuation">(</span><span class="token class-name">Money</span> amount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Payment: &quot;</span> <span class="token operator">+</span> amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        balance <span class="token operator">=</span> balance<span class="token punctuation">.</span><span class="token function">subtract</span><span class="token punctuation">(</span>amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p></p><p class="code-label">Address.java</p><p></p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">package</span> <span class="token class-name">JavaLabMoney</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Defines an address using a street, city, state, and zipcode</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Address</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//The street number and street name</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> street<span class="token punctuation">;</span>
+
+    <span class="token comment">//The city in which the address is located</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> city<span class="token punctuation">;</span>
+
+    <span class="token comment">//The state in which the address is located</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> state<span class="token punctuation">;</span>
+
+    <span class="token comment">//The zip code associated with that city and street</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> zip<span class="token punctuation">;</span>
+
+    <span class="token comment">//Constructor creates an address using four parameters</span>
+    <span class="token comment">//road describes the street number and name</span>
+    <span class="token comment">//town describes the city</span>
+    <span class="token comment">//st describes the state</span>
+    <span class="token comment">//zipCode describes the zip code</span>
+    <span class="token keyword">public</span> <span class="token class-name">Address</span><span class="token punctuation">(</span><span class="token class-name">String</span> road<span class="token punctuation">,</span> <span class="token class-name">String</span> town<span class="token punctuation">,</span> <span class="token class-name">String</span> st<span class="token punctuation">,</span> <span class="token class-name">String</span> zipCode<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        street <span class="token operator">=</span> road<span class="token punctuation">;</span>
+        city <span class="token operator">=</span> town<span class="token punctuation">;</span>
+        state <span class="token operator">=</span> st<span class="token punctuation">;</span>
+        zip <span class="token operator">=</span> zipCode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//toString method returns information about the address</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>street <span class="token operator">+</span> <span class="token string">&quot;, &quot;</span> <span class="token operator">+</span> city <span class="token operator">+</span> <span class="token string">&quot;, &quot;</span> <span class="token operator">+</span> state <span class="token operator">+</span> <span class="token string">&quot; &quot;</span> <span class="token operator">+</span> zip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p></p><p class="code-label">Person.java</p><p></p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">package</span> <span class="token class-name">JavaLabMoney</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Defines a person by name and address</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//The person&apos;s last name</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> lastName<span class="token punctuation">;</span>
+
+    <span class="token comment">//The person&apos;s first name</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> firstName<span class="token punctuation">;</span>
+
+    <span class="token comment">//The person&apos;s address</span>
+    <span class="token keyword">private</span> <span class="token class-name">Address</span> home<span class="token punctuation">;</span>
+
+    <span class="token comment">//Constructor creates a person from a last name,</span>
+    <span class="token comment">//first name, and address</span>
+    <span class="token keyword">public</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token class-name">String</span> last<span class="token punctuation">,</span> <span class="token class-name">String</span> first<span class="token punctuation">,</span> <span class="token class-name">Address</span> residence<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        lastName <span class="token operator">=</span> last<span class="token punctuation">;</span>
+        firstName <span class="token operator">=</span> first<span class="token punctuation">;</span>
+        home <span class="token operator">=</span> residence<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//toString method returns information about the person</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">(</span>firstName <span class="token operator">+</span> <span class="token string">&quot; &quot;</span> <span class="token operator">+</span> lastName <span class="token operator">+</span> <span class="token string">&quot;, &quot;</span> <span class="token operator">+</span> home<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p></p><p class="code-label">MoneyDriver.java</p><p></p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">package</span> <span class="token class-name">JavaLabMoney</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">//This program tests the money class.</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MoneyDriver</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//This is a driver for testing the class</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">int</span> BEGINNING <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> FIRST_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">10.02</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> SECOND_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">10.02</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> THIRD_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">10.88</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Money</span> balance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span>BEGINNING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;The current amount is &quot;</span> <span class="token operator">+</span>
+                balance<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        balance <span class="token operator">=</span> balance<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>SECOND_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Adding &quot;</span> <span class="token operator">+</span> SECOND_AMOUNT <span class="token operator">+</span>
+                <span class="token string">&quot; gives &quot;</span> <span class="token operator">+</span> balance<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        balance <span class="token operator">=</span> balance<span class="token punctuation">.</span><span class="token function">subtract</span><span class="token punctuation">(</span>THIRD_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Subtracting &quot;</span> <span class="token operator">+</span> THIRD_AMOUNT <span class="token operator">+</span>
+                <span class="token string">&quot; gives &quot;</span> <span class="token operator">+</span> balance<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> equal <span class="token operator">=</span> SECOND_AMOUNT<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>equal<span class="token punctuation">)</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>SECOND_AMOUNT <span class="token operator">+</span> <span class="token string">&quot; equals &quot;</span>
+                    <span class="token operator">+</span> FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>SECOND_AMOUNT <span class="token operator">+</span>
+                    <span class="token string">&quot; does not equal &quot;</span> <span class="token operator">+</span> FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        equal <span class="token operator">=</span> THIRD_AMOUNT<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>equal<span class="token punctuation">)</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>THIRD_AMOUNT <span class="token operator">+</span> <span class="token string">&quot; equals &quot;</span> <span class="token operator">+</span>
+                    FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>THIRD_AMOUNT <span class="token operator">+</span> <span class="token string">&quot; does not equal &quot;</span>
+                    <span class="token operator">+</span> FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p></p><p class="code-label">CreditCardDemo.java</p><p></p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">package</span> <span class="token class-name">JavaLabMoney</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Demonstrates the CreditCard class</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CreditCardDemo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> LIMIT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> FIRST_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> SECOND_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">10.02</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> THIRD_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token class-name">Money</span> FOURTH_AMOUNT <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Money</span><span class="token punctuation">(</span><span class="token number">990</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Person</span> owner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">&quot;Christie&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Diane&quot;</span><span class="token punctuation">,</span>
+                <span class="token keyword">new</span> <span class="token class-name">Address</span><span class="token punctuation">(</span><span class="token string">&quot;237J Harvey Hall&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Menomonie&quot;</span><span class="token punctuation">,</span>
+                        <span class="token string">&quot;WI&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;54751&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">CreditCard</span> visa <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CreditCard</span><span class="token punctuation">(</span>owner<span class="token punctuation">,</span> LIMIT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>visa<span class="token punctuation">.</span><span class="token function">getPersonals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Balance: &quot;</span> <span class="token operator">+</span> visa<span class="token punctuation">.</span><span class="token function">getBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Credit Limit: &quot;</span>
+                <span class="token operator">+</span> visa<span class="token punctuation">.</span><span class="token function">getCreditLimit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Attempt to charge &quot;</span> <span class="token operator">+</span> FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        visa<span class="token punctuation">.</span><span class="token function">charge</span><span class="token punctuation">(</span>FIRST_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Balance: &quot;</span> <span class="token operator">+</span> visa<span class="token punctuation">.</span><span class="token function">getBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Attempt to charge &quot;</span> <span class="token operator">+</span> SECOND_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        visa<span class="token punctuation">.</span><span class="token function">charge</span><span class="token punctuation">(</span>SECOND_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Balance: &quot;</span> <span class="token operator">+</span> visa<span class="token punctuation">.</span><span class="token function">getBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Attempt to pay &quot;</span> <span class="token operator">+</span> THIRD_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        visa<span class="token punctuation">.</span><span class="token function">payment</span><span class="token punctuation">(</span>THIRD_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Balance: &quot;</span> <span class="token operator">+</span> visa<span class="token punctuation">.</span><span class="token function">getBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Attempt to charge &quot;</span> <span class="token operator">+</span> FOURTH_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        visa<span class="token punctuation">.</span><span class="token function">charge</span><span class="token punctuation">(</span>FOURTH_AMOUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Balance: &quot;</span> <span class="token operator">+</span> visa<span class="token punctuation">.</span><span class="token function">getBalance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 </body></html>
                                 
@@ -355,7 +577,7 @@ public class Money {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Java Lab Money","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","prism","-highlight","back-to-top-button","page-toc-button","-lunr","-search","search-plus","copy-code-button","alerts","lightbox","katex","mathjax-full","url-embed","embed-pdf","codeblock-label"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"mathjax-full":{},"codeblock-label":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"lightbox":{"jquery":true},"page-toc-button":{},"back-to-top-button":{},"alerts":{},"copy-code-button":{},"url-embed":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"embed-pdf":{},"expandable-chapters":{},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaLabMoney.md","mtime":"2019-10-14T18:52:53.534Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-14T18:55:20.066Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JavaLabMoney","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","prism","-highlight","back-to-top-button","page-toc-button","-lunr","-search","search-plus","copy-code-button","alerts","lightbox","katex","mathjax-full","url-embed","embed-pdf","codeblock-label"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"mathjax-full":{},"codeblock-label":{},"splitter":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"lightbox":{"jquery":true},"page-toc-button":{},"back-to-top-button":{},"alerts":{},"copy-code-button":{},"url-embed":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"embed-pdf":{},"expandable-chapters":{},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaLabMoney.md","mtime":"2019-10-14T19:16:33.885Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-14T19:17:26.728Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
