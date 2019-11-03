@@ -65,6 +65,10 @@
                 
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-algolia/plugin-algolia.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
                 
             
@@ -476,7 +480,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Java Lab Fundamentals","level":"1.3","depth":1,"next":{"title":"Java Lab Class","level":"1.4","depth":1,"path":"JavaLabClass.md","ref":"JavaLabClass.md","articles":[]},"previous":{"title":"Java Lab Starting Program","level":"1.2","depth":1,"path":"JavaLabStartingProgram.md","ref":"JavaLabStartingProgram.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","prism","-highlight","back-to-top-button","page-toc-button","-lunr","-search","search-plus","copy-code-button","alerts","lightbox","katex","mathjax-full","url-embed","codeblock-label","github-embed","code-editor"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"mathjax-full":{},"codeblock-label":{},"splitter":{},"code-editor":{},"github-embed":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"lightbox":{"jquery":true},"page-toc-button":{},"back-to-top-button":{},"alerts":{},"copy-code-button":{},"url-embed":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaLabFundamentals.md","mtime":"2019-10-16T23:59:35.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-17T14:35:56.940Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Java Lab Fundamentals","level":"1.3","depth":1,"next":{"title":"Java Lab Class","level":"1.4","depth":1,"path":"JavaLabClass.md","ref":"JavaLabClass.md","articles":[]},"previous":{"title":"Java Lab Starting Program","level":"1.2","depth":1,"path":"JavaLabStartingProgram.md","ref":"JavaLabStartingProgram.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters","splitter","prism","-highlight","back-to-top-button","page-toc-button","-lunr","-search","search-plus","copy-code-button","alerts","lightbox","katex","mathjax-full","url-embed","codeblock-label","github-embed","code-editor","algolia"],"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"mathjax-full":{},"codeblock-label":{},"splitter":{},"code-editor":{},"github-embed":{},"katex":{},"algolia":{"freeAccount":"true","index":"JavaLabStartingWithJava","applicationID":"LXW1HLH9S0","publicKey":"c7d1302e1dfa6eac9bef53e756991a27"},"fontsettings":{"theme":"white","family":"sans","size":2},"lightbox":{"jquery":true},"page-toc-button":{},"back-to-top-button":{},"alerts":{},"copy-code-button":{},"url-embed":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JavaLabFundamentals.md","mtime":"2019-10-16T23:59:35.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-03T01:59:47.284Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -543,6 +547,14 @@
     
         
         <script src="gitbook/gitbook-plugin-code-editor/editor.js"></script>
+        
+    
+        
+        <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-algolia/search-algolia.js"></script>
         
     
         
